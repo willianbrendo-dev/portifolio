@@ -1,4 +1,29 @@
+"use client";
+
 export function Contact() {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const name = String(formData.get("name") || "").trim();
+    const email = String(formData.get("email") || "").trim();
+    const message = String(formData.get("message") || "").trim();
+    const text = [
+      "Ola, Willian! Vim pelo seu portfolio.",
+      name && `Nome: ${name}`,
+      email && `E-mail: ${email}`,
+      message && `Mensagem: ${message}`,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    window.open(
+      `https://wa.me/5586981854932?text=${encodeURIComponent(text)}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
+  }
+
   return (
     <section id="contato" className="bg-card py-24">
       <div className="mx-auto max-w-3xl px-6">
@@ -10,7 +35,10 @@ export function Contact() {
           automacao complexos.
         </p>
 
-        <form className="space-y-5 rounded-2xl border border-border bg-background p-6 shadow-lg shadow-black/10">
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-5 rounded-2xl border border-border bg-background p-6 shadow-lg shadow-black/10"
+        >
           <div>
             <label
               htmlFor="name"
@@ -22,6 +50,7 @@ export function Contact() {
               id="name"
               name="name"
               type="text"
+              required
               className="w-full rounded-lg border border-border bg-card px-4 py-3 text-foreground outline-none transition focus:border-brand"
               placeholder="Seu nome"
             />
@@ -38,6 +67,7 @@ export function Contact() {
               id="email"
               name="email"
               type="email"
+              required
               className="w-full rounded-lg border border-border bg-card px-4 py-3 text-foreground outline-none transition focus:border-brand"
               placeholder="nome@empresa.com"
             />
@@ -54,13 +84,14 @@ export function Contact() {
               id="message"
               name="message"
               rows={5}
+              required
               className="w-full resize-none rounded-lg border border-border bg-card px-4 py-3 text-foreground outline-none transition focus:border-brand"
               placeholder="Descreva o desafio tecnico ou objetivo do projeto"
             />
           </div>
 
           <button
-            type="button"
+            type="submit"
             className="w-full rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand/20 transition hover:bg-blue-500 sm:w-auto"
           >
             Enviar Mensagem
