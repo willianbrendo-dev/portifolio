@@ -1,14 +1,73 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #0a0f1e;
-  --color-foreground: #f1f5f9;
-  --color-brand: #3b82f6;
-  --color-card: #111827;
-  --color-border: #1f2937;
+  --color-background: #070c1b;
+  --color-foreground: #dce8f8;
+  --color-brand: #4f8ef7;
+  --color-card: #0c1525;
+  --color-border: #1a2d4a;
+  --color-muted: #6b85a8;
 }
 
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* Gradient text */
+.text-gradient {
+  background: linear-gradient(130deg, #60a5fa 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Ambient glow orbs */
+.glow-orb {
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+/* Brand glow shadow */
+.shadow-brand-glow {
+  box-shadow: 0 0 0 1px rgba(79,142,247,0.15), 0 8px 40px rgba(79,142,247,0.12);
+}
+
+/* Shimmer border via pseudo */
+.card-premium {
+  position: relative;
+  background: var(--color-card);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.card-premium::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(79,142,247,0.25) 0%, rgba(167,139,250,0.1) 50%, rgba(79,142,247,0.05) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Dot grid background texture */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(79,142,247,0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-background); }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-brand); }
+
+/* Selection */
+::selection { background: rgba(79,142,247,0.25); color: #fff; }
