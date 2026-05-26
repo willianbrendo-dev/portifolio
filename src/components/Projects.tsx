@@ -19,6 +19,14 @@ const projects = [
     action: "Quero uma Automação",
     hasVideoPlaceholder: true,
   },
+  {
+    title: "Bot de Ingressos FutebolCard",
+    description:
+      "Bot de alta performance para garantia automática de ingressos em eventos. Opera múltiplas contas em paralelo com anti-detecção (fingerprint + proxy rotativo), resolução automática de CAPTCHA e painel web de controle em tempo real. Testado em produção: 3 ingressos garantidos em evento real.",
+    stack: ["Python", "Patchright", "FastAPI", "Docker", "Anti-Detecção"],
+    action: "Quero uma Automação Similar",
+    hasFutebolCardMedia: true,
+  },
 ];
 
 export function Projects() {
@@ -30,8 +38,13 @@ export function Projects() {
     type: "video",
     src: "/automacao-cv-demo.webm",
   });
+  const [futebolCardActiveMedia, setFutebolCardActiveMedia] = useState({
+    type: "video",
+    src: "/futebolcard-bot-demo.webm",
+  });
   const scrollRef = useRef<HTMLDivElement>(null);
   const automationScrollRef = useRef<HTMLDivElement>(null);
+  const futebolCardScrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (offset: number) => {
     if (scrollRef.current) {
@@ -45,6 +58,12 @@ export function Projects() {
     }
   };
 
+  const scrollFutebolCard = (offset: number) => {
+    if (futebolCardScrollRef.current) {
+      futebolCardScrollRef.current.scrollBy({ left: offset, behavior: "smooth" });
+    }
+  };
+
   return (
     <section id="projetos" className="py-24">
       <div className="mx-auto max-w-6xl px-6">
@@ -53,10 +72,10 @@ export function Projects() {
         </h2>
 
         <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 lg:grid-cols-2">
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <article
               key={project.title}
-              className="flex overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-black/20"
+              className={`flex overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-black/20 ${index === projects.length - 1 && projects.length % 2 !== 0 ? "lg:col-span-2" : ""}`}
             >
               <div className="flex w-full flex-col">
                 {project.hasTecnoBookMedia ? (
@@ -266,6 +285,65 @@ export function Projects() {
                         <span className="text-2xl font-bold text-white">
                           ›
                         </span>
+                      </button>
+                    </div>
+                  </div>
+                ) : null}
+
+                {project.hasFutebolCardMedia ? (
+                  <div>
+                    <div className="group/monitor relative h-64 w-full overflow-hidden border-b border-border bg-black">
+                      <div className="flex h-full w-full items-center justify-center">
+                        <video
+                          src={futebolCardActiveMedia.src}
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          className="h-full w-full object-contain"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="group relative border-b border-border bg-black/40">
+                      <button
+                        onClick={() => scrollFutebolCard(-150)}
+                        className="absolute bottom-0 left-0 top-0 z-10 flex w-10 cursor-pointer items-center justify-center bg-gradient-to-r from-black/90 to-transparent opacity-0 transition-opacity group-hover:opacity-100"
+                      >
+                        <span className="text-2xl font-bold text-white">‹</span>
+                      </button>
+
+                      <div
+                        ref={futebolCardScrollRef}
+                        className="flex scroll-smooth gap-3 overflow-x-auto p-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                      >
+                        <div
+                          onClick={() =>
+                            setFutebolCardActiveMedia({
+                              type: "video",
+                              src: "/futebolcard-bot-demo.webm",
+                            })
+                          }
+                          className={`relative h-16 w-28 flex-shrink-0 cursor-pointer overflow-hidden rounded transition-all ${futebolCardActiveMedia.src === "/futebolcard-bot-demo.webm" ? "border-2 border-brand" : "border border-border hover:border-brand/50"}`}
+                        >
+                          <video
+                            src="/futebolcard-bot-demo.webm"
+                            className="h-full w-full object-cover opacity-60"
+                            muted
+                          />
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-brand/80 pl-0.5 text-xs text-white">
+                              ▶
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <button
+                        onClick={() => scrollFutebolCard(150)}
+                        className="absolute bottom-0 right-0 top-0 z-10 flex w-10 cursor-pointer items-center justify-center bg-gradient-to-l from-black/90 to-transparent opacity-0 transition-opacity group-hover:opacity-100"
+                      >
+                        <span className="text-2xl font-bold text-white">›</span>
                       </button>
                     </div>
                   </div>
