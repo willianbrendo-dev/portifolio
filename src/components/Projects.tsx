@@ -91,9 +91,7 @@ export function Projects() {
                 <>
                   <div className="relative h-64 w-full overflow-hidden bg-black">
                     <div className={`h-full w-full ${activeMedia.type === "video" ? "flex items-center justify-center" : "overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"}`}>
-                      {activeMedia.src.includes("tecnobook-demo") ? (
-                        <img src={activeMedia.src} alt="TecnoBook Demo" className="h-full w-full object-contain" />
-                      ) : activeMedia.src.includes("automacao-cv-demo") && activeMedia.type === "video" ? (
+                      {activeMedia.type === "video" ? (
                         <video src={activeMedia.src} autoPlay loop muted playsInline className="h-full w-full object-contain" />
                       ) : (
                         <img src={activeMedia.src} alt="Project Media" className="h-auto w-full object-top" />
@@ -113,7 +111,7 @@ export function Projects() {
                     </button>
                     <div ref={scrollRef} className="flex gap-2 overflow-x-auto p-2.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                       <div onClick={() => setActiveMedia({ type: "video", src: "/tecnobook-demo.webm" })} className={thumbClass(activeMedia.src === "/tecnobook-demo.webm")}>
-                        <img src="/tecnobook-demo.webm" alt="Thumb Video TecnoBook" className="h-full w-full object-cover opacity-50" />
+                        <video src="/tecnobook-demo.webm" className="h-full w-full object-cover opacity-50" muted />
                         <MediaThumbPlay />
                       </div>
                       {["/tecnobook-dashboard.png", "/tecnobook-modulo1.png"].map((src, i) => (
