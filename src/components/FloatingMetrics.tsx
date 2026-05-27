@@ -26,7 +26,7 @@ export function FloatingMetrics() {
 
   return (
     <div
-      className={`fixed bottom-6 left-6 z-50 flex items-center gap-2 rounded-full border border-white/10 bg-black/40 px-4 py-2 shadow-2xl backdrop-blur-md transition-all duration-700 ease-out ${
+      className={`fixed bottom-5 left-4 z-50 flex items-center gap-2 rounded-full border border-white/10 bg-black/40 px-3 py-1.5 shadow-2xl backdrop-blur-md transition-all duration-700 ease-out sm:bottom-6 sm:left-6 sm:px-4 sm:py-2 ${
         isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
       }`}
     >

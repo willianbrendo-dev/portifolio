@@ -10,7 +10,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center gap-16 overflow-hidden px-6 py-28 lg:flex-row lg:justify-between lg:gap-12 lg:py-20"
+      className="relative mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center gap-10 overflow-hidden px-6 py-24 sm:gap-14 lg:flex-row lg:justify-between lg:gap-12 lg:py-20"
     >
       {/* Ambient glow orbs */}
       <div className="glow-orb pointer-events-none absolute -left-40 top-20 h-[500px] w-[500px] bg-[#4f8ef7]/8" />
