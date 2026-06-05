@@ -10,7 +10,7 @@ export function Footer() {
             willianbrendo.dev@gmail.com
           </a>
           <a
-            href="https://wa.me/5586981854932"
+            href="https://wa.me/5586998252264"
             target="_blank"
             rel="noopener noreferrer"
             className="transition-colors hover:text-white"

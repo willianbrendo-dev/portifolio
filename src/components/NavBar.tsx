@@ -48,7 +48,7 @@ export function NavBar() {
             </a>
           ))}
           <a
-            href="https://wa.me/5586981854932"
+            href="https://wa.me/5586998252264"
             target="_blank"
             rel="noopener noreferrer"
             className="ml-3 rounded-lg border border-[#4f8ef7]/40 bg-[#4f8ef7]/10 px-4 py-2 text-[#4f8ef7] transition-all hover:border-[#4f8ef7] hover:bg-[#4f8ef7]/20"
@@ -60,7 +60,7 @@ export function NavBar() {
         {/* Mobile right-side: CTA compact + hamburger */}
         <div className="flex items-center gap-3 md:hidden">
           <a
-            href="https://wa.me/5586981854932"
+            href="https://wa.me/5586998252264"
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-lg border border-[#4f8ef7]/40 bg-[#4f8ef7]/10 px-3 py-1.5 text-xs font-semibold text-[#4f8ef7] transition-all hover:border-[#4f8ef7] hover:bg-[#4f8ef7]/20"

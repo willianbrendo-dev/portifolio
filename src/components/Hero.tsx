@@ -52,7 +52,7 @@ export function Hero() {
         {/* CTAs */}
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
           <a
-            href="https://wa.me/5586981854932"
+            href="https://wa.me/5586998252264"
             target="_blank"
             rel="noopener noreferrer"
             className="group relative overflow-hidden rounded-xl bg-[#4f8ef7] px-7 py-3.5 text-center text-sm font-semibold text-white shadow-[0_4px_24px_rgba(79,142,247,0.35)] transition-all hover:shadow-[0_4px_32px_rgba(79,142,247,0.5)] hover:brightness-110"

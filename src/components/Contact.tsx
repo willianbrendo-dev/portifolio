@@ -23,7 +23,7 @@ export function Contact() {
       .join("\n");
 
     window.open(
-      `https://wa.me/5586981854932?text=${encodeURIComponent(text)}`,
+      `https://wa.me/5586998252264?text=${encodeURIComponent(text)}`,
       "_blank",
       "noopener,noreferrer",
     );
@@ -71,12 +71,12 @@ export function Contact() {
                 willianbrendo.dev@gmail.com
               </a>
               <a
-                href="https://wa.me/5586981854932"
+                href="https://wa.me/5586998252264"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-1 block text-sm text-[#6b85a8] transition-colors hover:text-white"
               >
-                WhatsApp: +55 86 98185-4932
+                WhatsApp: +55 86 99825-2264
               </a>
             </div>
           </div>
