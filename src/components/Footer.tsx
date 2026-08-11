@@ -1,23 +1,25 @@
-export function Footer() {
-  const year = new Date().getFullYear();
+import { Icon } from "@/components/Icons";
+import { siteConfig } from "@/data/portfolio";
 
+export function Footer() {
   return (
-    <footer className="border-t border-[#1a2d4a] bg-[#070c1b] px-6 py-8">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 text-xs text-[#6b85a8] sm:flex-row">
-        <p>© {year} Willian Brendo — Engenheiro de Software Sênior</p>
-        <div className="flex items-center gap-6">
-          <a href="mailto:willianbrendo.dev@gmail.com" className="transition-colors hover:text-white">
-            willianbrendo.dev@gmail.com
+    <footer className="site-footer">
+      <div className="footer-shell">
+        <a className="footer-mark" href="#top" aria-label="Voltar ao início">
+          WB<span>/</span>
+        </a>
+        <p>
+          {siteConfig.name}<br />
+          <span>{siteConfig.role}</span>
+        </p>
+        <nav aria-label="Links de contato">
+          <a href={siteConfig.github} target="_blank" rel="noreferrer">
+            GitHub <Icon name="external" size={14} />
           </a>
-          <a
-            href="https://wa.me/5586998252264"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-colors hover:text-white"
-          >
-            WhatsApp
-          </a>
-        </div>
+          <a href={`mailto:${siteConfig.email}`}>E-mail</a>
+          <a href={`https://wa.me/${siteConfig.phoneDigits}`} target="_blank" rel="noreferrer">WhatsApp</a>
+        </nav>
+        <small>© 2026 · Construído com Next.js e atenção aos detalhes.</small>
       </div>
     </footer>
   );
