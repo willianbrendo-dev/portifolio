@@ -1,3 +1,22 @@
+export type ProjectMediaAsset = {
+  src: string;
+  alt: string;
+  label: string;
+  caption: string;
+  width: number;
+  height: number;
+};
+
+export type ProjectMedia = {
+  id: string;
+  projectName: string;
+  coordinate: string;
+  title: string;
+  note: string;
+  mobile: [ProjectMediaAsset, ProjectMediaAsset, ProjectMediaAsset];
+  desktop: ProjectMediaAsset;
+};
+
 export type ProjectCase = {
   id: string;
   index: string;
@@ -7,6 +26,7 @@ export type ProjectCase = {
   problem: string;
   built: string;
   contribution: string;
+  media?: ProjectMedia;
   engineering: Array<{
     title: string;
     detail: string;
@@ -84,6 +104,47 @@ export const featuredCases: ProjectCase[] = [
       "Aplicação Next.js com autenticação, regras no servidor, PostgreSQL, Prisma, billing, integrações e testes.",
     contribution:
       "Construção ponta a ponta do produto, da experiência web à modelagem de dados, controles de acesso e entrega.",
+    media: {
+      id: "barbo-product-view",
+      projectName: "Barbô",
+      coordinate: "BARBÔ / 01",
+      title: "Produto em operação.",
+      note: "Interface real capturada em ambiente isolado, com dados demonstrativos.",
+      mobile: [
+        {
+          src: "/projects/barbo/dashboard-mobile.png",
+          alt: "Painel mobile do Barbô com próximo atendimento e resumo operacional.",
+          label: "Dashboard",
+          caption: "Visão operacional.",
+          width: 780,
+          height: 1688,
+        },
+        {
+          src: "/projects/barbo/agendamento-mobile.png",
+          alt: "Fluxo público mobile do Barbô com seleção de serviço e profissional.",
+          label: "Agendamento",
+          caption: "Experiência do cliente.",
+          width: 780,
+          height: 1688,
+        },
+        {
+          src: "/projects/barbo/agenda-mobile.png",
+          alt: "Agenda mobile do Barbô com lista de atendimentos do dia.",
+          label: "Agenda",
+          caption: "Atendimentos e estados do dia.",
+          width: 780,
+          height: 1688,
+        },
+      ],
+      desktop: {
+        src: "/projects/barbo/agenda-desktop.png",
+        alt: "Agenda web do Barbô exibida em viewport desktop.",
+        label: "Agenda web",
+        caption: "Operação preservada em viewport ampla.",
+        width: 1800,
+        height: 1350,
+      },
+    },
     engineering: [
       {
         title: "Multi-tenancy em profundidade",

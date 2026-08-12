@@ -238,7 +238,7 @@ Limitações relevantes são publicadas junto aos cases. Nenhum número de usuá
 - Componentes por seção em `src/components`.
 - Client Components limitados a `SiteHeader`, `SystemBlueprint` e `Contact`.
 - Demais seções renderizadas como Server Components.
-- Uma única imagem pública aprovada e renderizada com `next/image`.
+- Mídia pública aprovada renderizada com `next/image`.
 - Conteúdo repetível estruturado em arrays tipados.
 - Sem biblioteca de estado, UI ou animação.
 
@@ -246,8 +246,8 @@ Limitações relevantes são publicadas junto aos cases. Nenhum número de usuá
 
 - Todos os vídeos foram removidos da homepage e de `public/`.
 - Assets sensíveis, duplicados, sem uso ou oriundos do template foram removidos.
-- `public/` passou de aproximadamente 17,62 MiB auditados para um único screenshot de 80.647 bytes.
-- O screenshot usa `next/image`, dimensões intrínsecas, `sizes` responsivo e lazy loading padrão.
+- `public/` passou de aproximadamente 17,62 MiB auditados para os assets aprovados do portfólio.
+- As imagens usam `next/image`, dimensões intrínsecas, `sizes` responsivo e lazy loading padrão.
 - A homepage é prerenderizada como conteúdo estático.
 - Fontes são self-hosted automaticamente por `next/font`.
 - Interatividade isolada em três componentes pequenos.
@@ -268,7 +268,7 @@ Não foi executado Lighthouse. Portanto, não são declarados scores ou ganhos p
 - Foco visível global com contraste reforçado.
 - Alvos interativos com altura mínima próxima ou superior a 44 px.
 - Reduced motion completo.
-- Alt text descritivo no único screenshot.
+- Alt text descritivo nas imagens públicas.
 - Links externos identificáveis e protegidos com `rel="noreferrer"`.
 
 Foi feita validação manual e programática direcionada. Não foi executada auditoria automatizada com axe, portanto conformidade WCAG 2.2 AA absoluta não é declarada.
@@ -406,7 +406,7 @@ Componentes antigos acoplados, contador artificial e galerias foram removidos. A
 - Confirmar status operacional atual de Barbô e TecnoBook.
 - Obter métricas reais somente com fonte verificável.
 - Confirmar autorização pública para nome, marca e screenshot do TecnoBook; a tela usa a identidade interna OrderSistem.
-- Produzir screenshots sanitizados do Barbô, impressão TecnoBook e automações em ambiente autorizado.
+- Produzir screenshots sanitizados da impressão do TecnoBook e das automações em ambiente autorizado.
 - Atualizar a bio pública do GitHub, atualmente desalinhada ao posicionamento do portfólio.
 - Fornecer LinkedIn correto caso deva ser publicado.
 - Reconstruir e aprovar o currículo antes de exibir download.
@@ -416,7 +416,7 @@ Componentes antigos acoplados, contador artificial e galerias foram removidos. A
 
 ## 23. Próximas melhorias opcionais
 
-- Criar screenshots sanitizados e autorizados do Barbô e das integrações de hardware.
+- Criar screenshots sanitizados e autorizados das integrações de hardware.
 - Adicionar páginas individuais de case quando houver mais material factual.
 - Publicar currículo revisado e habilitar CTA configurável.
 - Adicionar LinkedIn após confirmação do perfil.
@@ -447,6 +447,7 @@ Componentes antigos acoplados, contador artificial e galerias foram removidos. A
 - [x] LinkedIn não inventado.
 - [x] Assets sensíveis removidos.
 - [x] Screenshot real seguro mantido.
+- [x] Mídia real sanitizada do Barbô integrada.
 - [x] Metadata, OG, Twitter, canonical, robots, sitemap e JSON-LD implementados.
 - [x] Navegação por teclado e foco visível implementados.
 - [x] Reduced motion implementado.
@@ -457,3 +458,63 @@ Componentes antigos acoplados, contador artificial e galerias foram removidos. A
 - [x] Docker build e execução passaram.
 - [x] `npm audit` final com zero vulnerabilidades.
 - [x] Nenhum commit, push ou deploy executado.
+
+## 25. Integração de mídia Barbô
+
+### Assets utilizados
+
+Somente quatro capturas aprovadas foram copiadas para `public/projects/barbo/`:
+
+- `dashboard-mobile.png`: visão operacional principal.
+- `agendamento-mobile.png`: experiência pública do cliente.
+- `agenda-mobile.png`: agenda e estados dos atendimentos.
+- `agenda-desktop.png`: prova secundária da experiência em viewport ampla.
+
+Os arquivos copiados mantêm os mesmos hashes SHA-256 dos originais selecionados em `Barbearia(SaaS)/artifacts/barbo-media/selected/`.
+
+### Assets deliberadamente não utilizados
+
+- `barbo-financeiro-mobile-01.png` e `barbo-financeiro-desktop-01.png`, porque valores demonstrativos poderiam ser lidos rapidamente como resultados comerciais reais.
+- Todos os arquivos de `raw/`.
+- Contact sheet.
+- Demais screenshots selecionados fora do escopo aprovado.
+
+### Estratégia visual
+
+- O componente tipado `ProductView` foi inserido somente no case Barbô, entre arquitetura/brief e decisões de engenharia.
+- O dashboard mobile é a peça dominante.
+- Agendamento e Agenda formam uma composição secundária assimétrica, sem device frame, perspectiva, autoplay ou movimento contínuo.
+- A Agenda desktop aparece abaixo como uma faixa editorial com `overflow: hidden`, `object-fit: cover` e `object-position: center top`.
+- As decisões sobre multi-tenancy, RLS, concorrência, IA, testes, stack e nota de evidência foram preservadas integralmente.
+- TecnoBook não foi redesenhado nem teve conteúdo alterado.
+
+### Tratamento mobile
+
+- Em `390px`, o dashboard aparece primeiro com largura útil de `336px`.
+- As duas telas secundárias usam uma região horizontal focável com `overflow-x: auto` e `scroll-snap-type: x mandatory`.
+- O trilho tem `336px` de largura visível e `592px` de conteúdo, com deslocamento manual verificado até `256px`.
+- A página não apresenta overflow horizontal global.
+- A captura desktop de suporte muda para proporção `4 / 3` no mobile para preservar o contexto da interface.
+
+### Tratamento desktop
+
+- Em `1440px`, o dashboard renderiza como principal com `384px` de largura de coluna.
+- As telas secundárias renderizam em duas colunas menores e com deslocamento vertical estático.
+- A captura desktop usa crop `9 / 4`, preservando título, filtros e atendimentos essenciais sem competir com as telas mobile.
+
+### Origem e dados
+
+As quatro capturas mostram a interface real do Barbô em ambiente Docker isolado, com banco separado, conta fictícia, dados demonstrativos e nenhuma integração externa configurada. Nenhum número visível foi convertido em claim ou copy do case.
+
+### Performance e validações
+
+- Volume original dos quatro PNGs: aproximadamente `928 KiB` no total.
+- Renderização por `next/image`, com dimensões intrínsecas, `sizes` responsivo, alt text factual e carregamento lazy.
+- Nenhuma imagem recebeu preload ou `priority`, pois o bloco está abaixo da dobra.
+- Nenhum vídeo, biblioteca de galeria, biblioteca de motion ou dependência foi adicionado.
+- QA visual em `1440x1000` e `390x844`.
+- Quatro imagens carregadas e decodificadas sem erro de console ou exceção de página.
+- `npm run lint`: passou.
+- `npm run typecheck`: passou.
+- `npm run build`: passou.
+- `git diff --check`: passou.

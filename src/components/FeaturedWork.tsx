@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { featuredCases } from "@/data/portfolio";
+import { ProductView } from "@/components/ProductView";
 
 const [barbo, tecnobook] = featuredCases;
 
@@ -88,6 +89,8 @@ export function FeaturedWork() {
               </div>
             </div>
           </div>
+
+          {barbo.media ? <ProductView media={barbo.media} /> : null}
 
           <div className="decision-grid">
             {barbo.engineering.map((decision, index) => (
