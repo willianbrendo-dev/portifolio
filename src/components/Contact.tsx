@@ -28,7 +28,8 @@ export function Contact() {
       `Mensagem: ${message}`,
     ].filter(Boolean).join("\n");
     const url = `https://wa.me/${siteConfig.phoneDigits}?text=${encodeURIComponent(text)}`;
-    const newWindow = window.open(url, "_blank", "noopener,noreferrer");
+    const newWindow = window.open(url, "_blank");
+    if (newWindow) newWindow.opener = null;
 
     setStatus("A conversa foi preparada no WhatsApp.");
     if (!newWindow) window.location.assign(url);
@@ -103,7 +104,7 @@ export function Contact() {
           <p className="form-privacy">
             Os dados preenchidos são usados apenas para montar a mensagem no WhatsApp.
           </p>
-          <p className="sr-only" aria-live="polite">{status}</p>
+          <p className={status ? "form-privacy" : "sr-only"} role="status" aria-live="polite">{status}</p>
         </form>
       </div>
     </section>
