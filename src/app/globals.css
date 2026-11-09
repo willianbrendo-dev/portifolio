@@ -239,7 +239,9 @@ li {
 .brand-mark {
   display: inline-flex;
   width: max-content;
-  align-items: baseline;
+  min-inline-size: 2.75rem;
+  min-height: 2.75rem;
+  align-items: center;
   gap: 0.45rem;
 }
 
@@ -2391,6 +2393,10 @@ li {
 }
 
 .footer-mark {
+  display: inline-flex;
+  min-inline-size: 2.75rem;
+  min-height: 2.75rem;
+  align-items: center;
   font-size: 1.5rem;
   font-weight: 800;
   letter-spacing: -0.05em;
@@ -2419,9 +2425,11 @@ li {
 
 .footer-shell nav a {
   display: inline-flex;
+  min-inline-size: 2.75rem;
   min-height: 2.75rem;
   align-items: center;
   gap: 0.35rem;
+  padding-inline: 0.25rem;
   color: #aeb2ac;
   font-size: 0.72rem;
 }
