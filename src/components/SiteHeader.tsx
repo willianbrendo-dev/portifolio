@@ -1,17 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/Icons";
 import { getWhatsAppUrl, navigation } from "@/data/portfolio";
 
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!menuOpen) return;
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
     };
 
     window.addEventListener("keydown", onKeyDown);
@@ -40,6 +44,7 @@ export function SiteHeader() {
         </a>
 
         <button
+          ref={menuButtonRef}
           className="menu-button"
           type="button"
           aria-expanded={menuOpen}
