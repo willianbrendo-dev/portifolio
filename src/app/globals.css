@@ -1364,6 +1364,7 @@ li {
   width: min(92dvw, 56rem);
   max-width: none;
   max-inline-size: calc(100dvw - 1rem);
+  max-height: 92vh;
   max-height: 92dvh;
   margin: auto;
   padding: 0;
@@ -1380,6 +1381,7 @@ li {
 }
 
 .product-lightbox-content {
+  max-height: 92vh;
   max-height: 92dvh;
   overflow: auto;
 }
